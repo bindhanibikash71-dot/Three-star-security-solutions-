@@ -184,7 +184,7 @@ function MainApp() {
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       // Accept matching domains
-      if (!event.origin.endsWith('.run.app') && !event.origin.includes('localhost')) {
+      if (!event.origin.endsWith('.run.app') && !event.origin.endsWith('.vercel.app') && !event.origin.includes('localhost')) {
         return;
       }
       
@@ -307,13 +307,18 @@ function MainApp() {
   const handleGoogleOAuthPopup = async () => {
     try {
       const res = await fetch('/api/auth/google/url');
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`HTTP ${res.status}: ${text}`);
+      }
       const data = await res.json();
       const authPopup = window.open(data.url, 'google_oauth_popup', 'width=500,height=600');
       if (!authPopup) {
         alert('Please allow popups to authentication via Google SSO.');
       }
     } catch (err: any) {
-      alert('Failed to connect to Google Auth API.');
+      console.error(err);
+      alert('Failed to connect to Google Auth API: ' + err.message);
     }
   };
 

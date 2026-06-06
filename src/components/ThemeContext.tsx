@@ -18,9 +18,9 @@ export interface TranslationDictionary {
 
 export const translations: TranslationDictionary = {
   appName: {
-    en: 'Security Guard Pro',
-    hi: 'सिक्योरिटी गार्ड प्रो',
-    or: 'ସିକ୍ୟୁରିଟି ଗାର୍ଡ ପ୍ରୋ',
+    en: 'Three Star Security Solutions',
+    hi: 'थ्री स्टार सिक्योरिटी सॉल्यूशंस',
+    or: 'ଥ୍ରୀ ଷ୍ଟାର ସିକ୍ୟୁରିଟି ସଲ୍ୟୁସନ୍ସ',
   },
   dashboard: {
     en: 'Dashboard',

@@ -23,7 +23,7 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Initialize SQLite Database
-const dbPath = path.join(process.cwd(), 'database.db');
+const dbPath = process.env.VERCEL ? ':memory:' : path.join(process.cwd(), 'database.db');
 const db = new sqlite3.Database(dbPath);
 
 // Create promise wrappers
@@ -1287,7 +1287,7 @@ app.post('/api/system/backup', authenticateToken, async (req: any, res) => {
   
   try {
     const backupName = `backup_database_${Date.now()}.db`;
-    const backupFolder = path.join(process.cwd(), 'backups');
+    const backupFolder = process.env.VERCEL ? '/tmp/backups' : path.join(process.cwd(), 'backups');
     
     if (!fs.existsSync(backupFolder)) {
       fs.mkdirSync(backupFolder);
@@ -1328,7 +1328,7 @@ async function startServer() {
   // Bind exclusively if not running inside Vercel serverless platform
   if (!process.env.VERCEL) {
     app.listen(PORT, '0.0.0.0', () => {
-      console.log(`[Security Guard Pro] Security Server booted on http://localhost:${PORT}`);
+      console.log(`[Three Star Security Solutions] Security Server booted on http://localhost:${PORT}`);
     });
   }
 }

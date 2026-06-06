@@ -138,7 +138,7 @@ export const AttendanceView: React.FC<AttendanceViewProps> = ({
         <body>
           <div class="header">
             <div>
-              <div class="logo">SECURITY GUARD PRO</div>
+              <div class="logo">THREE STAR SECURITY SOLUTIONS</div>
               <div style="font-size: 11px; color: #666;">COMMISSIONED SYSTEM FORCE PRESENCE LOGS</div>
             </div>
             <div class="meta">
